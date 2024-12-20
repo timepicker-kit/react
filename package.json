@@ -4,7 +4,9 @@
   "private": false,
   "version": "0.0.1",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
@@ -13,11 +15,13 @@
       "import": "./dist/index.es.js",
       "require": "./dist/index.umd.js",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./index.css": "./dist/index.css"
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && npm run build:styles",
+    "build:styles": "tailwindcss -i ./src/styles/global.css -o ./dist/index.css",
     "preview": "vite preview"
   },
   "peerDependencies": {

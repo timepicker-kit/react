@@ -104,8 +104,18 @@ export const PopoverContent = ({
   );
 };
 
-export const PopoverButton = ({ time }: { time: TimeInput }) => (
-  <button className="inline-flex items-center justify-start w-[200px] px-3 py-2 text-sm font-medium bg-background border border-input rounded-md shadow-sm hover:bg-accent hover:text-accent-foreground">
+export const PopoverButton = ({
+  time,
+  className,
+}: {
+  time: TimeInput;
+  className?: string;
+}) => (
+  <button
+    className={cn(
+      "inline-flex items-center justify-start w-[200px] px-3 py-2 text-sm font-medium bg-background border border-input rounded-md shadow-sm hover:bg-accent hover:text-accent-foreground",
+      className
+    )}>
     <Clock className="w-4 h-4 mr-2" />
     <span>{formatTime(time)}</span>
   </button>
