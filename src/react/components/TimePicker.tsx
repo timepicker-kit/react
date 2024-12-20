@@ -1,7 +1,7 @@
 import { ChevronDown, ChevronUp, X } from "lucide-react";
 import React, { useRef } from "react";
 import { useTimePicker } from "../hooks/useTimePicker";
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
 import {
   CloseButtonProps,
   DecrementButtonProps,

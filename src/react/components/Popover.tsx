@@ -10,7 +10,7 @@ import {
 } from "react";
 import { formatTime } from "../hooks/timeUtils";
 import { useClickOutside } from "../hooks/useClickOutside";
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
 import {
   PopoverContentProps,
   PopoverContextType,
