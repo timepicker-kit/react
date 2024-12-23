@@ -1,4 +1,4 @@
-# Time Picker Kit React
+# TimePick Kit React
 
 A flexible and customizable time picker component for React applications with built-in popover support.
 
@@ -16,7 +16,7 @@ A flexible and customizable time picker component for React applications with bu
 ## Installation
 
 ```bash
-npm install timepicker-kit-react
+npm install timepick-kit-react
 ```
 
 ### Required Peer Dependencies
@@ -45,8 +45,8 @@ import {
   PopoverButton,
   TimePicker,
   TimeInput,
-} from "timepicker-kit-react";
-import "timepicker-kit-react/index.css";
+} from "timepick-kit-react";
+import "timepick-kit-react/index.css";
 
 function App() {
   const [time, setTime] = useState<TimeInput>(new Date());
@@ -144,14 +144,14 @@ interface Time {
 ## Styling
 
 The package uses Tailwind CSS for styling.  
-Import `import "timepicker-kit-react/index.css";` into your app component.
+Import `import "timepick-kit-react/index.css";` into your app component.
 
 ## Utility Functions
 
 ### `formatTime`
 
 ```ts
-import { formatTime } from "timepicker-kit-react";
+import { formatTime } from "timepick-kit-react";
 
 const timeString = formatTime(new Date()); // Returns "hh:mm a" format
 ```
@@ -159,7 +159,7 @@ const timeString = formatTime(new Date()); // Returns "hh:mm a" format
 ### `useTimePicker`
 
 ```ts
-import { useTimePicker } from "timepicker-kit-react";
+import { useTimePicker } from "timepick-kit-react";
 
 const { time, setHour, setMinute, setPeriod } = useTimePicker(initialValue);
 ```
@@ -167,7 +167,7 @@ const { time, setHour, setMinute, setPeriod } = useTimePicker(initialValue);
 ### `useClickOutside`
 
 ```ts
-import { useClickOutside } from "timepicker-kit-react";
+import { useClickOutside } from "timepick-kit-react";
 
 useClickOutside(ref, handleClickOutside);
 ```
