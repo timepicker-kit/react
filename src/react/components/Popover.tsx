@@ -5,6 +5,7 @@ import {
   createContext,
   isValidElement,
   useContext,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -28,6 +29,19 @@ export function Popover({ children, className }: SharedPopoverTypes) {
   const popoverRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(popoverRef, () => setIsOpen(false));
+
+  // Add escape key handler
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && isOpen) setIsOpen(false);
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [isOpen]);
+
   return (
     <PopoverContext.Provider value={{ isOpen, toggle }}>
       <div className={cn(" relative", className)} ref={popoverRef}>

@@ -87,28 +87,44 @@ Main component for time selection.
 
 ### Popover Components
 
-- `<Popover />`: Container component that manages the popover state.
-- `<PopoverTrigger />`: Trigger element that toggles the popover.
+#### `<Popover />`
+
+Container component that manages popover state.
+
+| Prop        | Type        | Default      | Description                |
+| ----------- | ----------- | ------------ | -------------------------- |
+| `children`  | `ReactNode` | **required** | Popover content components |
+| `className` | `string`    | optional     | Additional CSS classes     |
+
+#### `<PopoverTrigger />`
+
+Trigger element that toggles the popover.
+
+| Prop        | Type        | Default      | Description                   |
+| ----------- | ----------- | ------------ | ----------------------------- |
+| `children`  | `ReactNode` | **required** | Element that triggers popover |
+| `className` | `string`    | optional     | Additional CSS classes        |
+
+#### `<PopoverContent />`
+
+Content container for the popover.
+
+| Prop        | Type          | Default                                 | Description                      |
+| ----------- | ------------- | --------------------------------------- | -------------------------------- |
+| `children`  | `ReactNode`   | **required**                            | Content to display in popover    |
+| `className` | `string`      | optional                                | Additional CSS classes           |
+| `isAnimate` | `boolean`     | `true`                                  | Enable/disable animations        |
+| `variants`  | `MotionProps` | [Default Animation](#default-animation) | Framer Motion animation variants |
+
+##### Default Animation
 
 ```tsx
-<PopoverTrigger className="cursor-pointer">
-  <PopoverButton time={time} />
-</PopoverTrigger>
-```
-
-- `<PopoverContent />`: Content container with animation support.
-
-```tsx
-<PopoverContent
-  isAnimate={true}
-  variants={{
-    initial: { opacity: 0, y: "20%" },
-    animate: { opacity: 1, y: "5%" },
-    exit: { opacity: 0, y: "-20%" },
-    transition: { duration: 0.2 },
-  }}>
-  <TimePicker />
-</PopoverContent>
+{
+  initial: { opacity: 0, y: "20%" },
+  animate: { opacity: 1, y: "5%" },
+  exit: { opacity: 0, y: "-20%" },
+  transition: { duration: 0.2 }
+}
 ```
 
 ## Types
