@@ -7,6 +7,9 @@
   "files": [
     "dist"
   ],
+  "repository": "https://github.com/timepicker-kit/react",
+  "author": "David Jaja",
+  "license": "MIT",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
