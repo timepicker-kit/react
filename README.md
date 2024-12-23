@@ -45,8 +45,8 @@ import {
   PopoverButton,
   TimePicker,
   TimeInput,
-} from "tpk-react";
-import "tpk-react/index.css";
+} from "timepicker-kit-react";
+import "timepicker-kit-react/index.css";
 
 function App() {
   const [time, setTime] = useState<TimeInput>(new Date());
@@ -144,14 +144,14 @@ interface Time {
 ## Styling
 
 The package uses Tailwind CSS for styling.  
-Import `import "tpk-react/index.css";` into your app component.
+Import `import "timepicker-kit-react/index.css";` into your app component.
 
 ## Utility Functions
 
 ### `formatTime`
 
 ```ts
-import { formatTime } from "tpk-react";
+import { formatTime } from "timepicker-kit-react";
 
 const timeString = formatTime(new Date()); // Returns "hh:mm a" format
 ```
@@ -159,7 +159,7 @@ const timeString = formatTime(new Date()); // Returns "hh:mm a" format
 ### `useTimePicker`
 
 ```ts
-import { useTimePicker } from "tpk-react";
+import { useTimePicker } from "timepicker-kit-react";
 
 const { time, setHour, setMinute, setPeriod } = useTimePicker(initialValue);
 ```
@@ -167,7 +167,7 @@ const { time, setHour, setMinute, setPeriod } = useTimePicker(initialValue);
 ### `useClickOutside`
 
 ```ts
-import { useClickOutside } from "tpk-react";
+import { useClickOutside } from "timepicker-kit-react";
 
 useClickOutside(ref, handleClickOutside);
 ```
