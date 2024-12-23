@@ -1,4 +1,4 @@
-# TPK React (Time Picker Kit)
+# Time Picker Kit React
 
 A flexible and customizable time picker component for React applications with built-in popover support.
 
@@ -16,7 +16,7 @@ A flexible and customizable time picker component for React applications with bu
 ## Installation
 
 ```bash
-npm install tpk-react
+npm install timepicker-kit-react
 ```
 
 ### Required Peer Dependencies
