@@ -29,5 +29,6 @@ jobs:
 
       - name: Publish to NPM
         run: npm publish --registry=https://registry.npmjs.org
+
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
