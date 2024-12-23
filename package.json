@@ -29,7 +29,10 @@
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/timepicker-kit/react",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timepicker-kit/react.git"
+  },
   "homepage": "https://github.com/timepicker-kit/react#readme",
   "author": "David Jaja",
   "license": "MIT",
