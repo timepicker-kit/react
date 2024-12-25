@@ -205,4 +205,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
-Created with ❤️ by [David Jaja]
+Created by [David Jaja](https://x.com/JajaDavid8)
