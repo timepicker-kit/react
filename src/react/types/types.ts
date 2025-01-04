@@ -99,6 +99,7 @@ export type TimeInputUIProps = {
   ) => void;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   inputClassName?: string;
+  direction: number;
 };
 
 export type CloseButtonProps = {

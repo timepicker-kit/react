@@ -46,9 +46,7 @@ function isTime(value: TimeInput): value is Time {
 
 export function useTimePicker(value: TimeInput) {
   const [time, setTime] = useState<Time>(() => {
-    if (isTime(value)) {
-      return value; // If it's a valid Time, use it directly
-    }
+    if (isTime(value)) return value; // If it's a valid Time, use it directly
 
     // Handle other cases like Date or string here:
     if (value instanceof Date) {

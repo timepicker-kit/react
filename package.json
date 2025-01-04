@@ -2,7 +2,7 @@
   "name": "timepick-kit-react",
   "description": "A flexible timepicker kit for react",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "keywords": [
     "react",
