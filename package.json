@@ -2,7 +2,7 @@
   "name": "timepick-kit-react",
   "description": "A flexible timepicker kit for react",
   "private": false,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "keywords": [
     "react",
@@ -55,7 +55,6 @@
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
-    "vue": "^3.0.0",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.12.16",
     "lucide-react": "^0.244.0",

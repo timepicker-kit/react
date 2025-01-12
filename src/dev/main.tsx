@@ -30,6 +30,22 @@ const ReactDemo = () => {
           <TimePicker value={time} onChange={handleTimeChange} />
         </PopoverContent>
       </Popover>
+      <Popover>
+        <PopoverTrigger>
+          <PopoverButton time={time} />
+        </PopoverTrigger>
+        <PopoverContent>
+          <TimePicker value={time} onChange={handleTimeChange} />
+        </PopoverContent>
+      </Popover>
+      <Popover>
+        <PopoverTrigger>
+          <PopoverButton time={time} />
+        </PopoverTrigger>
+        <PopoverContent>
+          <TimePicker value={time} onChange={handleTimeChange} />
+        </PopoverContent>
+      </Popover>
 
       <div className="flex flex-col items-center justify-center space-y-4 ">
         <div className="mt-40 space-y-2 ">

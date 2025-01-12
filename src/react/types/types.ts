@@ -56,8 +56,6 @@ export interface TimePickerProps {
 }
 
 export type ActionButtonProps = {
-  isPeriod: boolean;
-  key: keyof Time;
   buttonClassName?: string;
 };
 
@@ -85,7 +83,7 @@ export type TogglePeriodButtonProps = {
 export type TimeInputUIProps = {
   value: number;
   ref: React.RefObject<HTMLInputElement>;
-  key: keyof Time;
+  refKey: keyof Time;
   min: number;
   max: number;
   setter: (value: number) => void;

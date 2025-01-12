@@ -1,25 +1,12 @@
-import { ChevronDown, ChevronUp, X } from "lucide-react";
-import React, {
-  useEffect,
-  useRef,
-  useState,
-  useMemo,
-  useCallback,
-  memo,
-} from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { useTimePicker } from "../hooks/useTimePicker";
 import { cn } from "../../lib/utils";
-import {
-  CloseButtonProps,
-  DecrementButtonProps,
-  IncrementButtonProps,
-  Period,
-  Time,
-  TimeInputUIProps,
-  TimePickerProps,
-  TogglePeriodButtonProps,
-} from "../types/types";
-import { AnimatePresence, motion } from "framer-motion";
+import { Period, Time, TimePickerProps } from "../types/types";
+import { CloseButton } from "./timepicker-ui/close-button";
+import { DecrementButton } from "./timepicker-ui/decrement-button";
+import { IncrementButton } from "./timepicker-ui/increment-button";
+import { TimeInputUI } from "./timepicker-ui/time-input-ui";
+import { TogglePeriodButton } from "./timepicker-ui/toggle-period-button";
 
 export function TimePicker({
   value,
@@ -160,8 +147,6 @@ export function TimePicker({
         <div className={cn("flex flex-col items-center", sectionClassName)}>
           <IncrementButton
             handleIncrement={increment}
-            isPeriod={isPeriod}
-            key={key}
             buttonClassName={buttonClassName}
             incrementIcon={incrementIcon}
           />
@@ -176,7 +161,7 @@ export function TimePicker({
             <TimeInputUI
               value={value as number}
               ref={ref as React.RefObject<HTMLInputElement>}
-              key={key}
+              refKey={key}
               min={min}
               max={max}
               inputClassName={inputClassName}
@@ -191,15 +176,15 @@ export function TimePicker({
 
           <DecrementButton
             handleDecrement={decrement}
-            isPeriod={isPeriod}
-            key={key}
             decrementIcon={decrementIcon}
+            buttonClassName={buttonClassName}
           />
         </div>
       );
     },
     [
       sectionClassName,
+
       buttonClassName,
       incrementIcon,
       periodToggleClassName,
@@ -234,177 +219,3 @@ export function TimePicker({
     </div>
   );
 }
-
-const IncrementButton = ({
-  handleIncrement,
-  isPeriod,
-  key,
-  buttonClassName,
-  incrementIcon: Icon = ChevronUp,
-}: IncrementButtonProps) => {
-  const memoizedIcon = useMemo(() => <Icon className="w-4 h-4" />, [Icon]);
-
-  return (
-    <button
-      onClick={handleIncrement}
-      className={cn(
-        "p-1 relative z-10 rounded-md hover:bg-muted",
-        buttonClassName
-      )}
-      aria-label={`Increment ${isPeriod ? "period" : key}`}>
-      {memoizedIcon}
-    </button>
-  );
-};
-
-const DecrementButton = ({
-  handleDecrement,
-  isPeriod,
-  key,
-  buttonClassName,
-  decrementIcon: Icon = ChevronDown,
-}: DecrementButtonProps) => {
-  const MemoizedIcon = useMemo(() => <Icon className="w-4 h-4" />, [Icon]);
-
-  return (
-    <button
-      onClick={handleDecrement}
-      className={cn(
-        "p-1 relative z-10 rounded-md hover:bg-muted",
-        buttonClassName
-      )}
-      aria-label={`Increment ${isPeriod ? "period" : key}`}>
-      {MemoizedIcon}
-    </button>
-  );
-};
-
-const TogglePeriodButton = ({
-  value,
-  ref,
-  handlePeriodChange,
-  periodToggleClassName,
-}: TogglePeriodButtonProps) => (
-  <button
-    ref={ref}
-    className={cn(
-      "flex items-center justify-center w-12 h-12 text-2xl font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary",
-      periodToggleClassName
-    )}
-    onClick={handlePeriodChange}
-    tabIndex={0}
-    aria-label="Toggle AM/PM">
-    {value}
-  </button>
-);
-
-const slideVariants = {
-  enter: (direction: number) => ({
-    y: direction > 0 ? 35 : -35, // Bottom-to-top for increases
-    opacity: 0,
-  }),
-  center: {
-    zIndex: 1,
-    y: 0,
-    opacity: 1,
-  },
-  exit: (direction: number) => ({
-    zIndex: 0,
-    y: direction > 0 ? -35 : 35, // Top-to-bottom for decreases
-    opacity: 0,
-  }),
-};
-const TimeInputUI = ({
-  value,
-  ref,
-  key,
-  min,
-  max,
-  setter,
-  handleKeyDown,
-  handleChange,
-  inputClassName,
-  direction,
-}: TimeInputUIProps) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const prevValueRef = useRef(value);
-  const shouldAnimate = !isEditing && prevValueRef.current !== value;
-
-  // Update prevValue when actual value changes
-  useEffect(() => {
-    prevValueRef.current = value;
-  }, [value]);
-
-  const memoizedAnimatePresence = useMemo(
-    () => (
-      <AnimatePresence initial={false} custom={direction}>
-        <motion.div
-          key={shouldAnimate ? value : "static"}
-          custom={direction}
-          variants={slideVariants}
-          initial={shouldAnimate ? "enter" : "center"}
-          animate="center"
-          exit={shouldAnimate ? "exit" : "center"}
-          transition={{
-            y: { type: "spring", stiffness: 300, damping: 30 },
-            opacity: { duration: 0.2 },
-          }}
-          style={{ position: "absolute", width: "100%" }}>
-          <input
-            ref={ref}
-            type="text"
-            value={value.toString().padStart(2, "0")}
-            onChange={handleChange}
-            onFocus={() => setIsEditing(true)}
-            onBlur={() => setIsEditing(false)}
-            onKeyDown={(e) => handleKeyDown(e, value, min, max, setter, key)}
-            className={cn(
-              "w-12 h-12 text-2xl font-semibold text-center rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary bg-background",
-              inputClassName
-            )}
-            aria-label={`Edit ${key}`}
-          />
-        </motion.div>
-      </AnimatePresence>
-    ),
-    [
-      direction,
-      shouldAnimate,
-      value,
-      ref,
-      handleChange,
-      inputClassName,
-      key,
-      handleKeyDown,
-      min,
-      max,
-      setter,
-    ]
-  );
-
-  return <div className="relative w-12 h-12 ">{memoizedAnimatePresence}</div>;
-};
-
-const CloseButton = memo(
-  ({
-    toggle,
-    closeIcon: Icon = X, // Default to the X icon from lucide-react
-    closeButtonClassName,
-  }: CloseButtonProps) => {
-    const handleClick = useCallback(() => toggle?.(), [toggle]);
-
-    const memoizedIcon = useMemo(() => <Icon size={16} />, [Icon]);
-
-    return (
-      <button
-        className={cn(
-          "absolute p-1 rounded-full top-1 right-1 hover:bg-muted",
-          closeButtonClassName
-        )}
-        title="Close"
-        onClick={handleClick}>
-        {memoizedIcon}
-      </button>
-    );
-  }
-);

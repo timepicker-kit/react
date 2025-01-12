@@ -48,8 +48,6 @@ export interface TimePickerProps {
     }>;
 }
 export type ActionButtonProps = {
-    isPeriod: boolean;
-    key: keyof Time;
     buttonClassName?: string;
 };
 export type IncrementButtonProps = ActionButtonProps & {
@@ -75,13 +73,14 @@ export type TogglePeriodButtonProps = {
 export type TimeInputUIProps = {
     value: number;
     ref: React.RefObject<HTMLInputElement>;
-    key: keyof Time;
+    refKey: keyof Time;
     min: number;
     max: number;
     setter: (value: number) => void;
     handleKeyDown: (e: React.KeyboardEvent, currentValue: number, min: number, max: number, setter: (value: number) => void, key: keyof Time) => void;
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     inputClassName?: string;
+    direction: number;
 };
 export type CloseButtonProps = {
     toggle?: () => void;
